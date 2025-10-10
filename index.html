@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M.A.T Sorun Çözüm Merkezi</title>
+    <title>MAT Token Bilgi Merkezi</title>
     <style>
         * {
             margin: 0;
@@ -12,1127 +12,390 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #e2e8f0;
-            background: #0f172a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #1a1a2e;
             min-height: 100vh;
+            padding: 20px;
+            color: #fff;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
-        header {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid #1e293b;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #60a5fa;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #94a3b8;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #60a5fa;
-        }
-
-        .hero {
+        .header {
             text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            margin-bottom: 40px;
+            padding: 30px 20px;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #f1f5f9;
-            font-weight: 600;
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #94a3b8;
+        .header p {
+            color: #8892b0;
+            font-size: 16px;
         }
 
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            position: relative;
+        .command-item {
+            background: #16213e;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
-        .search-box {
+        .command-item.expanded {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .command-button {
             width: 100%;
-            padding: 1rem 1.5rem;
-            border: 1px solid #374151;
-            border-radius: 12px;
-            font-size: 1rem;
-            background: #1f2937;
-            color: #e2e8f0;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .search-box:focus {
-            border-color: #60a5fa;
-        }
-
-        .search-box::placeholder {
-            color: #6b7280;
-        }
-
-        .main-content {
-            background: #1e293b;
-            margin: 2rem 0;
-            border-radius: 16px;
-            border: 1px solid #334155;
-            overflow: hidden;
-        }
-
-        .content-section {
-            padding: 3rem;
-        }
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .category-card {
-            background: #334155;
-            border: 1px solid #475569;
-            border-radius: 12px;
-            padding: 2rem;
-            color: #e2e8f0;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-card:hover {
-            transform: translateY(-2px);
-            border-color: #60a5fa;
-            background: #3f4f68;
-        }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #60a5fa;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .category-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .category-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #f1f5f9;
-        }
-
-        .category-card p {
-            color: #94a3b8;
-            line-height: 1.5;
-        }
-
-        .category-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .problems-grid {
-            display: none;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .problem-card {
-            background: #334155;
-            border: 1px solid #475569;
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .problem-card:hover {
-            border-color: #60a5fa;
-            transform: translateY(-2px);
-        }
-
-        .problem-card h4 {
-            color: #60a5fa;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .problem-card p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        .back-btn {
-            background: #60a5fa;
-            color: #0f172a;
+            padding: 20px 25px;
+            background: transparent;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
+            color: #fff;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: #3b82f6;
-            transform: translateY(-1px);
-        }
-
-        .solution-detail {
-            display: none;
-            background: #1e293b;
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-        }
-
-        .solution-steps {
-            background: #334155;
-            border: 1px solid #475569;
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 1rem 0;
-        }
-
-        .step {
-            background: #1e293b;
-            border: 1px solid #374151;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1rem 0;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .step:hover {
-            border-color: #60a5fa;
-        }
-
-        .step-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
         }
 
-        .step-number {
-            background: #60a5fa;
-            color: #0f172a;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+        .command-button:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .command-button .emoji {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        .command-button .left {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            flex-shrink: 0;
-            font-weight: bold;
-            font-size: 0.9rem;
         }
 
-        .step-title {
-            flex: 1;
-        }
-
-        .step-title h4 {
-            color: #f1f5f9;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .step-title p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        .expand-icon {
-            color: #60a5fa;
-            font-size: 1.2rem;
+        .command-button .arrow {
+            font-size: 20px;
             transition: transform 0.3s ease;
         }
 
-        .step.expanded .expand-icon {
+        .command-item.expanded .arrow {
             transform: rotate(180deg);
         }
 
-        .step-detail {
-            display: none;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #374151;
+        .command-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: rgba(102, 126, 234, 0.05);
         }
 
-        .step.expanded .step-detail {
-            display: block;
+        .command-item.expanded .command-content {
+            max-height: 800px;
+            padding: 25px;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
         }
 
-        .step-detail h5 {
-            color: #60a5fa;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+        .description {
+            color: #ccd6f6;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 15px;
         }
 
-        .step-detail p {
-            color: #e2e8f0;
-            margin-bottom: 1rem;
-            line-height: 1.6;
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
         }
 
-        .step-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .step-image {
-            background: #0f172a;
-            border: 1px solid #374151;
+        .info-list li {
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 8px;
             border-radius: 8px;
-            padding: 1rem;
+            color: #8892b0;
+            border-left: 3px solid #667eea;
+        }
+
+        .example-box {
+            background: #0a192f;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .example-box .title {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .example-box .code {
+            font-family: 'Courier New', monospace;
+            color: #64ffda;
+            font-size: 14px;
+        }
+
+        .contract-address {
+            background: #0a192f;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            word-break: break-all;
+            color: #64ffda;
+            margin: 15px 0;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+
+        .footer {
             text-align: center;
-            transition: border-color 0.3s ease;
+            padding: 30px 20px;
+            color: #8892b0;
+            font-size: 14px;
+            margin-top: 50px;
         }
 
-        .step-image:hover {
-            border-color: #60a5fa;
-        }
-
-        .step-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-        }
-
-        .step-image span {
-            color: #94a3b8;
-            font-size: 0.8rem;
-        }
-
-        .contact-section {
-            background: #334155;
-            border-top: 1px solid #475569;
-            color: #e2e8f0;
-            padding: 4rem 3rem;
-            text-align: center;
-        }
-
-        .contact-section h2 {
-            margin-bottom: 1rem;
-            color: #f1f5f9;
-        }
-
-        .contact-section p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #94a3b8;
-        }
-
-        .contact-email {
-            background: #60a5fa;
-            color: #0f172a;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            display: inline-block;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .contact-email:hover {
-            background: #3b82f6;
-            transform: translateY(-1px);
-        }
-
-        footer {
-            background: #0f172a;
-            border-top: 1px solid #1e293b;
-            color: #94a3b8;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .mobile-menu {
-            display: none;
-            color: #94a3b8;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .warning-box {
-            background: #451a03;
-            border: 1px solid #92400e;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-
-        .warning-box h6 {
-            color: #fbbf24;
-            margin-bottom: 0.5rem;
-        }
-
-        .warning-box p {
-            color: #fde68a;
-            font-size: 0.9rem;
-        }
-
-        .tip-box {
-            background: #064e3b;
-            border: 1px solid #059669;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-
-        .tip-box h6 {
-            color: #34d399;
-            margin-bottom: 0.5rem;
-        }
-
-        .tip-box p {
-            color: #a7f3d0;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 24px;
             }
 
-            .categories {
-                grid-template-columns: 1fr;
+            .command-button {
+                font-size: 16px;
+                padding: 18px 20px;
             }
 
-            .problems-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .content-section {
-                padding: 2rem 1.5rem;
-            }
-
-            .step-images {
-                grid-template-columns: 1fr;
+            .command-button .emoji {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">🛡️ M.A.T</a>
-                <ul class="nav-links">
-                    <li><a href="#anasayfa">Ana Sayfa</a></li>
-                    <li><a href="#kategoriler">Kategoriler</a></li>
-                    <li><a href="#iletisim">İletişim</a></li>
-                </ul>
-                <div class="mobile-menu">☰</div>
-            </nav>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 MAT Token Bilgi Merkezi</h1>
+            <p>Komutlara tıklayarak detaylı bilgi alın</p>
         </div>
-    </header>
 
-    <section class="hero" id="anasayfa">
-        <div class="container">
-            <h1>Kripto Sorunları Çözüm Merkezi</h1>
-            <p>Token alımı, borsa hesabı oluşturma ve diğer sorunlarınız için detaylı çözümler</p>
-            
-            <div class="search-container">
-                <input type="text" class="search-box" placeholder="Sorunuzu arayın... (örn: Binance hesap doğrulama)" id="searchInput">
+
+
+        <div class="command-item" onclick="toggleCommand(this)">
+            <button class="command-button">
+                <div class="left">
+                    <span class="emoji">🔥</span>
+                    <span>/yakim</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="command-content">
+                <div class="description">
+                    MAT Token'ın burn (yakım) bilgilerini Türkçe olarak gösterir.
+                </div>
+                <ul class="info-list">
+                    <li>📊 Toplam arz miktarı</li>
+                    <li>🔥 Burn adresindeki token miktarı</li>
+                    <li>🔴 Yakılan token yüzdesi</li>
+                    <li>👀 Burn adresi bilgisi</li>
+                </ul>
+                <div class="example-box">
+                    <div class="title">💬 Kullanım:</div>
+                    <div class="code">/yakim veya yakım</div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <div class="container">
-        <div class="main-content">
-            <div class="content-section" id="kategoriler">
-                <div id="mainCategories">
-                    <h2 style="text-align: center; margin-bottom: 2rem; color: #f1f5f9; font-weight: 600;">Sorun Kategorileri</h2>
-                    
-                    <div class="categories">
-                        <a href="#" class="category-card" onclick="showProblems('binance')">
-                            <span class="category-icon">⚡</span>
-                            <h3>Binance Sorunları</h3>
-                            <p>Hesap açma, doğrulama, işlem sorunları ve Binance'e özel tüm problemlerin çözümleri</p>
-                        </a>
-                        
-                        <a href="#" class="category-card" onclick="showProblems('token')">
-                            <span class="category-icon">🪙</span>
-                            <h3>Token Alım Sorunları</h3>
-                            <p>Token satın alma, transfer işlemleri, cüzdan bağlama ve DeFi protokol sorunları</p>
-                        </a>
-                        
-                        <a href="#" class="category-card" onclick="showProblems('wallet')">
-                            <span class="category-icon">💼</span>
-                            <h3>Cüzdan Sorunları</h3>
-                            <p>MetaMask, Trust Wallet ve diğer kripto cüzdanlarla ilgili sorun çözümleri</p>
-                        </a>
+        <div class="command-item" onclick="toggleCommand(this)">
+            <button class="command-button">
+                <div class="left">
+                    <span class="emoji">🔥</span>
+                    <span>/burn</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="command-content">
+                <div class="description">
+                    MAT Token'ın burn bilgilerini İngilizce olarak gösterir. /yakim komutu ile aynı bilgileri İngilizce sunar.
+                </div>
+                <ul class="info-list">
+                    <li>📊 Total Supply</li>
+                    <li>🔥 Burned Amount</li>
+                    <li>🔴 Burn Percentage</li>
+                    <li>👀 Burn Address</li>
+                </ul>
+                <div class="example-box">
+                    <div class="title">💬 Kullanım:</div>
+                    <div class="code">/burn veya burn</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-item" onclick="toggleCommand(this)">
+            <button class="command-button">
+                <div class="left">
+                    <span class="emoji">💰</span>
+                    <span>/price</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="command-content">
+                <div class="description">
+                    MAT Token'ın anlık fiyat ve piyasa bilgilerini gösterir.
+                </div>
+                <ul class="info-list">
+                    <li>💵 Anlık fiyat (USD)</li>
+                    <li>🟢 24 saatlik fiyat değişimi</li>
+                    <li>📊 Market cap (piyasa değeri)</li>
+                    <li>📈 24 saatlik işlem hacmi</li>
+                    <li>🦐 Toplam rezerv (likidite havuzu)</li>
+                </ul>
+                <div class="example-box">
+                    <div class="title">💬 Kullanım:</div>
+                    <div class="code">/price veya price</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-item" onclick="toggleCommand(this)">
+            <button class="command-button">
+                <div class="left">
+                    <span class="emoji">📝</span>
+                    <span>/ca</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="command-content">
+                <div class="description">
+                    MAT Token'ın contract adresini (CA) gösterir.
+                </div>
+                <div class="contract-address">
+                    0xd3B0e53b8379CeAD266E4341D7B484fa6A7991DE
+                </div>
+                <div class="example-box">
+                    <div class="title">💬 Kullanım:</div>
+                    <div class="code">/ca veya ca</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-item" onclick="toggleCommand(this)">
+            <button class="command-button">
+                <div class="left">
+                    <span class="emoji">🧮</span>
+                    <span>/mh</span>
+                </div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="command-content">
+                <div class="description">
+                    Belirtilen MAT token miktarının güncel piyasa değerini hesaplar. Anlık fiyat ile çarparak toplam değeri gösterir.
+                </div>
+                <div class="example-box">
+                    <div class="title">💬 Kullanım:</div>
+                    <div class="code">/mh 1000</div>
+                    <div class="code" style="margin-top: 5px;">/mh 1500.50</div>
+                </div>
+                <div class="example-box">
+                    <div class="title">📊 Örnek Çıktı:</div>
+                    <div class="description" style="margin-top: 10px; margin-bottom: 0;">
+                        🔢 Adet: 1,000.00 MAT<br>
+                        💵 Anlık Fiyat: $0.00000125<br>
+                        💎 Toplam Değer: $1.25
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div id="problemsSection" style="display: none;">
-                    <button class="back-btn" onclick="showCategories()">← Kategorilere Dön</button>
-                    <h2 id="problemsTitle" style="color: #f1f5f9; margin-bottom: 2rem; font-weight: 600;"></h2>
-                    <div class="problems-grid" id="problemsList"></div>
+        <div class="command-item" onclick="toggleCommand(this)">
+            <button class="command-button">
+                <div class="left">
+                    <span class="emoji">ℹ️</span>
+                    <span>/info</span>
                 </div>
-
-                <div id="solutionSection" class="solution-detail">
-                    <button class="back-btn" onclick="goBackToProblems()">← Sorunlara Dön</button>
-                    <div id="solutionContent"></div>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="command-content">
+                <div class="description">
+                    MAT Token hakkında detaylı bilgi menüsünü açar. İnteraktif buton menüsü ile 15+ farklı konu başlığına erişebilirsiniz.
+                </div>
+                <ul class="info-list">
+                    <li>💎 MAT Token Nedir?</li>
+                    <li>📊 Toplam Arz</li>
+                    <li>💫 Dolaşımdaki Miktar</li>
+                    <li>💰 Vergi Oranı</li>
+                    <li>📈 Vergi Dağılımı</li>
+                    <li>✅ Lisanslı Olmanın Avantajları</li>
+                    <li>⏰ Vesting Süreci</li>
+                    <li>🤝 OTC Dağılımı</li>
+                    <li>🎯 Meydan App Görev Sistemi</li>
+                    <li>🌐 Türkçe/İngilizce dil desteği</li>
+                </ul>
+                <div class="example-box">
+                    <div class="title">💬 Kullanım:</div>
+                    <div class="code">/info</div>
                 </div>
             </div>
+        </div>
 
-            <div class="contact-section" id="iletisim">
-                <h1>Sorunuz Burada Yok mu?</h>
-                <p>Aradığınız çözümü bulamadıysanız, sorununuzu bize gönderin. Uzman ekibimiz size yardımcı olacak!</p>
-                <h2.5>Mail Adresimiz</h>
-                <p style="font-size: 2rem; margin: -1rem 0; color: #60a5fa; user-select: none;">
-                    ⬇
-                </p>
-
-                <div class="contact-email">
-                    yardim@kriptocozum.com
+        <div class="command-item" onclick="toggleCommand(this)">
+            <button class="command-button">
+                <div class="left">
+                    <span class="emoji">🚀</span>
+                    <span>/start</span>
                 </div>
-                <p style="margin-top: 1rem;">
-                    Sorununuzu detaylı bir şekilde açıklayarak mail gönderebilirsiniz. En kısa sürede size dönüş yapacağız.
-                </p>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="command-content">
+                <div class="description">
+                    Bot'un hoş geldin mesajını ve kullanılabilir komutları gösterir. Kullanıcının yetki durumuna göre farklı komut listeleri sunar.
+                </div>
+                <ul class="info-list">
+                    <li>👋 Hoş geldin mesajı</li>
+                    <li>📋 Kullanılabilir komut listesi</li>
+                    <li>🔐 Özel kanal ve yetki kontrolü</li>
+                </ul>
+                <div class="example-box">
+                    <div class="title">💬 Kullanım:</div>
+                    <div class="code">/start</div>
+                </div>
             </div>
+        </div>
+
+        <div class="footer">
+            © 2025 MAT Token | Tüm hakları saklıdır
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Meydan App Token. Tüm hakları saklıdır.</p>
-        </div>
-    </footer>
-
     <script>
-        // Gelişmiş sorun veritabanı - Resim ve detaylı açıklama desteği ile
-        const problems = {
-            binance: [
-                {
-                    id: 'binance-kayit',
-                    title: 'Binance Hesap Kayıt Sorunları',
-                    description: 'Email doğrulama, telefon doğrulama ve kayıt tamamlama sorunları',
-                    solution: {
-                        title: 'Binance Hesap Kayıt Sorunları Çözümü',
-                        steps: [
-                            {
-                                title: 'Email Doğrulama Sorunu',
-                                summary: 'Email gelmiyorsa yapmanız gerekenler',
-                                detail: {
-                                    description: 'Binance kayıt sırasında email doğrulama kodu gelmeme sorunu çok yaygın bir problemdir. Bu durumda aşağıdaki adımları sırasıyla takip edin.',
-                                    content: [
-                                        'Öncelikle spam/junk klasörünüzü kontrol edin. Binance emailları bazen spam klasörüne düşebilir.',
-                                        'Gmail kullanıyorsanız "Promosyon" sekmesini de kontrol etmeyi unutmayın.',
-                                        '5 dakika bekledikten sonra "Tekrar Gönder" butonuna tıklayın.',
-                                        'Farklı bir email adresi kullanmayı deneyin (Hotmail yerine Gmail gibi).',
-                                        'Email provider ayarlarınızı kontrol edin, Binance domaininin engellenip engellenmediğine bakın.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://www.abprojeyonetimi.com/wp-content/uploads/2016/10/email_ss_1920.png',
-                                            caption: 'Gmail spam klasörü kontrol edilmesi'
-                                        },
-                                        {
-                                            url: 'https://i.imgur.com/xV5ansm.jpeg',
-                                            caption: 'Binance email doğrulama ekranı'
-                                        }
-                                    ],
-                                    warning: {
-                                        title: '⚠️ Dikkat',
-                                        content: 'Email adresi yanlış girilmişse, yeni hesap oluşturmanız gerekir. Email adresini değiştirmek mümkün değildir.'
-                                    }
-                                }
-                            },
-                            {
-                                title: 'Telefon Doğrulama Sorunu',
-                                summary: 'SMS doğrulama kodu gelmeme sorunu çözümü',
-                                detail: {
-                                    description: 'Telefon doğrulama sorunu genellikle operatör engellemeleri veya yanlış numara formatından kaynaklanır.',
-                                    content: [
-                                        'Telefon numaranızı +90 ile başlattığınızdan emin olun.',
-                                        'Numara başında 0 varsa kaldırın (5xx xxx xxxx formatında olmalı).',
-                                        'VPN kullanıyorsanız kapatın, yerel IP adresi kullanın.',
-                                        'Farklı operatör kullanmayı deneyin (Turkcell, Vodafone, Türk Telekom).',
-                                        'Google Voice gibi sanal numara servisleri kabul edilmez.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Telefon+Formatı',
-                                            caption: 'Doğru telefon numarası formatı: +90 5xx xxx xxxx'
-                                        }
-                                    ],
-                                    tip: {
-                                        title: '💡 İpucu',
-                                        content: 'Eğer SMS gelmiyor ise, sesli arama seçeneğini kullanmayı deneyin.'
-                                    }
-                                }
-                            },
-                            {
-                                title: 'Kimlik Doğrulama',
-                                summary: 'KYC (Know Your Customer) işlemi için gerekli belgeler',
-                                detail: {
-                                    description: 'Kimlik doğrulama işlemi için yüksek kaliteli belgeler gereklidir. Reddedilme sebepleri genellikle görüntü kalitesi ile ilgilidir.',
-                                    content: [
-                                        'Kimlik kartı fotoğrafı net olmalı, tüm kenarlar ve yazılar görünmeli.',
-                                        'Işık yeterli olmalı, gölge veya yansıma olmamalı.',
-                                        'Selfie çekerken kimlik kartını yüzünüzün yanında açıkça görünür şekilde tutun.',
-                                        'Kimlik kartı üzerinde parmak izi veya leke bulunmamalı.',
-                                        'Fotoğraflar .jpg veya .png formatında, 5MB\'dan küçük olmalı.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Doğru+Kimlik+Fotoğrafı',
-                                            caption: 'Doğru kimlik kartı fotoğrafı örneği'
-                                        },
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Selfie+Örneği',
-                                            caption: 'Kimlik kartı ile selfie çekme örneği'
-                                        }
-                                    ],
-                                    warning: {
-                                        title: '⚠️ Önemli',
-                                        content: 'Sahte belgeler kullanmak hesabınızın kalıcı olarak kapatılmasına neden olur.'
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    id: 'binance-para-yatirma',
-                    title: 'Para Yatırma Sorunları',
-                    description: 'Banka transferi, kredi kartı ve diğer yatırma yöntemleri ile ilgili sorunlar',
-                    solution: {
-                        title: 'Binance Para Yatırma Sorunları',
-                        steps: [
-                            {
-                                title: 'Banka Transferi Sorunu',
-                                summary: 'IBAN transferi gözükmeme ve gecikme sorunları',
-                                detail: {
-                                    description: 'Banka transferi ile para yatırma en güvenilir yöntemdir ancak bazı detaylara dikkat edilmelidir.',
-                                    content: [
-                                        'IBAN numarasını doğru yazdığınızdan emin olun, ekstra boşluk bırakmayın.',
-                                        'Açıklama kısmına mutlaka size verilen referans kodunu tam olarak yazın.',
-                                        'Transfer tutarı minimum 50 TL olmalıdır.',
-                                        'Transfer genellikle mesai saatleri içinde 1-2 saat içinde hesabınıza yansır.',
-                                        'Hafta sonu yapılan transferler pazartesi işleme alınır.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=IBAN+Transfer+Formu',
-                                            caption: 'Banka transfer formu doğru doldurma örneği'
-                                        }
-                                    ],
-                                    tip: {
-                                        title: '💡 İpucu',
-                                        content: 'Transfer yapmadan önce IBAN numarasının güncel olduğundan emin olun. Binance ara sıra IBAN değiştirebilir.'
-                                    }
-                                }
-                            },
-                            {
-                                title: 'Kredi Kartı Reddedilme',
-                                summary: 'Kredi kartı ile alım yapamama sorunu çözümü',
-                                detail: {
-                                    description: 'Kredi kartı ile kripto para alımı birçok bankada kısıtlanmıştır. Bu durum için alternatif yöntemler mevcuttur.',
-                                    content: [
-                                        'Bankanızın kripto para alımlarını engelleyip engellemediğini kontrol edin.',
-                                        'Kart limitinizi aşmadığınızdan emin olun.',
-                                        '3D Secure doğrulamasını mutlaka tamamlayın.',
-                                        'VPN kullanıyorsanız kapatın.',
-                                        'Farklı saatlerde denemeyi tercih edin (mesai saatleri içinde).'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=3D+Secure+Ekranı',
-                                            caption: '3D Secure doğrulama ekranı'
-                                        }
-                                    ],
-                                    warning: {
-                                        title: '⚠️ Dikkat',
-                                        content: 'Çoğu Türk bankası kripto para alımını engellemektedir. Banka transferi daha güvenilir bir seçenektir.'
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            ],
-            token: [
-                {
-                    id: 'token-satin-alma',
-                    title: 'Token Satın Alma Sorunları',
-                    description: 'DEX, CEX ve swap işlemlerinde karşılaşılan sorunlar',
-                    solution: {
-                        title: 'Token Satın Alma Sorunları Çözümü',
-                        steps: [
-                            {
-                                title: 'Swap İşlemi Başarısız',
-                                summary: 'PancakeSwap, Uniswap gibi DEX\'lerde işlem başarısız olma',
-                                detail: {
-                                    description: 'DEX işlemleri blockchain ağında gerçekleşir ve gas ücreti, slippage gibi faktörler başarısızlığa neden olabilir.',
-                                    content: [
-                                        'Gas ücretinizin yeterli olduğundan emin olun (ETH için en az 0.01 ETH, BNB için 0.005 BNB).',
-                                        'Slippage toleransını %2-5 arasına ayarlayın, çok düşük slippage işlemi başarısız yapar.',
-                                        'İşlem yoğunluğu az olan saatleri tercih edin (Türkiye saati ile 02:00-08:00).',
-                                        'Token contract adresinin doğru olduğundan emin olun.',
-                                        'Yeterli likidite olan tokenları tercih edin.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=PancakeSwap+Ayarları',
-                                            caption: 'PancakeSwap slippage ayarları'
-                                        },
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Gas+Fee+Ayarı',
-                                            caption: 'Gas fee ayarlama ekranı'
-                                        }
-                                    ],
-                                    tip: {
-                                        title: '💡 İpucu',
-                                        content: 'Yeni tokenler için slippage %10-15 olabilir, ancak bu durum daha yüksek risk taşır.'
-                                    }
-                                }
-                            },
-                            {
-                                title: 'Token Görünmüyor',
-                                summary: 'Satın alınan token cüzdanda görünmeme sorunu',
-                                detail: {
-                                    description: 'Token satın aldıktan sonra cüzdanda görünmeme durumu genellikle token contract adresinin eklenmemiş olmasından kaynaklanır.',
-                                    content: [
-                                        'Token contract adresini cüzdanınıza manuel olarak ekleyin.',
-                                        'BSC, ETH, Polygon gibi doğru ağda olduğunuzdan emin olun.',
-                                        'Blockchain explorer\'dan (BSCScan, Etherscan) transaction hash ile işlemi kontrol edin.',
-                                        'Token sembolü ve decimal sayısını doğru girin.',
-                                        'Bazen tokenlar otomatik görünmesi için 10-15 dakika beklemek gerekir.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Token+Ekleme',
-                                            caption: 'MetaMask\'e token ekleme ekranı'
-                                        },
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=BSCScan+Kontrol',
-                                            caption: 'BSCScan\'den işlem kontrol etme'
-                                        }
-                                    ],
-                                    warning: {
-                                        title: '⚠️ Önemli',
-                                        content: 'Token contract adresini mutlaka resmi kaynaklardan alın. Sahte tokenlar olabilir.'
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    id: 'token-transfer',
-                    title: 'Token Transfer Sorunları', 
-                    description: 'Cüzdanlar arası token transfer ve kaybolma sorunları',
-                    solution: {
-                        title: 'Token Transfer Sorunları',
-                        steps: [
-                            {
-                                title: 'Transfer Görünmüyor',
-                                summary: 'Gönderilen token karşı cüzdanda görünmeme',
-                                detail: {
-                                    description: 'Token transferi yapıldıktan sonra karşı tarafta görünmeme durumu genellikle ağ uyumsuzluğu veya onay beklemesinden kaynaklanır.',
-                                    content: [
-                                        'Blockchain explorer\'dan transaction hash ile işlemi kontrol edin.',
-                                        'İşlemin kaç onay aldığını kontrol edin (ETH için en az 12, BSC için 15 onay gerekir).',
-                                        'Doğru ağa gönderdiğinizden emin olun (BSC, ETH, Polygon vb.)',
-                                        'Alıcı cüzdanın token contract adresini eklemiş olması gerekir.',
-                                        'Network congestion durumunda işlemler gecikebilir, sabırla bekleyin.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Transaction+Hash',
-                                            caption: 'Transaction hash ile işlem takibi'
-                                        },
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Network+Confirmation',
-                                            caption: 'Network onay durumu kontrolü'
-                                        }
-                                    ],
-                                    tip: {
-                                        title: '💡 İpucu',
-                                        content: 'İlk defa transfer yapıyorsanız küçük bir miktar ile test transferi yapın.'
-                                    }
-                                }
-                            },
-                            {
-                                title: 'Yanlış Ağa Gönderim',
-                                summary: 'Farklı blockchain ağına token gönderme hatası',
-                                detail: {
-                                    description: 'En yaygın hatalardan biri ETH tokenini BSC ağına veya tam tersini göndermektir. Bu durum genellikle kurtarılabilir.',
-                                    content: [
-                                        'ETH tokenini BSC ağına gönderdiyseniz, BSC ağında aynı adresle kontrol edin.',
-                                        'Çoğu modern cüzdan bu durumda tokenları otomatik olarak gösterir.',
-                                        'Wrapped versiyonları kontrol edin (WETH, WBNB gibi).',
-                                        'Bridge protokolleri kullanarak tokenları doğru ağa taşıyabilirsiniz.',
-                                        'Binance gibi borsalarda multi-chain desteği varsa token kurtarılabilir.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Network+Seçimi',
-                                            caption: 'Doğru network seçimi'
-                                        },
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Bridge+Protocol',
-                                            caption: 'Bridge protokolü kullanım örneği'
-                                        }
-                                    ],
-                                    warning: {
-                                        title: '⚠️ Dikkat',
-                                        content: 'Yanlış ağa gönderim yapmadan önce mutlaka network kontrolü yapın. Her zaman test miktarı gönderin.'
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            ],
-            wallet: [
-                {
-                    id: 'metamask-baglanti',
-                    title: 'MetaMask Bağlantı Sorunları',
-                    description: 'DApp bağlantısı, ağ değiştirme ve işlem onaylama sorunları',
-                    solution: {
-                        title: 'MetaMask Bağlantı Sorunları',
-                        steps: [
-                            {
-                                title: 'DApp Bağlanmıyor',
-                                summary: 'Decentralized uygulamalara bağlanamama sorunu',
-                                detail: {
-                                    description: 'MetaMask\'ın DApp\'lere bağlanamaması genellikle tarayıcı veya uzantı kaynaklı sorunlardan oluşur.',
-                                    content: [
-                                        'MetaMask uzantısını yeniden başlatın (disable/enable yapın).',
-                                        'Tarayıcı cache ve cookies\'lerini temizleyin.',
-                                        'MetaMask\'ın son versiyonda olduğundan emin olun.',
-                                        'Tarayıcı gizli modunda (incognito) deneyin.',
-                                        'Farklı tarayıcıda (Chrome, Firefox, Brave) test edin.',
-                                        'AdBlock gibi uzantıları geçici olarak kapatın.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=MetaMask+Uzantı',
-                                            caption: 'MetaMask uzantı ayarları'
-                                        },
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=DApp+Bağlantısı',
-                                            caption: 'DApp bağlantı ekranı'
-                                        }
-                                    ],
-                                    tip: {
-                                        title: '💡 İpucu',
-                                        content: 'MetaMask bağlantısı için sayfa yenilemeden önce cüzdanın açık olduğundan emin olun.'
-                                    }
-                                }
-                            },
-                            {
-                                title: 'İşlem Takılı Kaldı',
-                                summary: 'Pending durumunda kalan işlemler için çözüm',
-                                detail: {
-                                    description: 'MetaMask\'ta işlemler bazen düşük gas fee nedeniyle takılabilir. Bu durumda işlemi hızlandırabilir veya iptal edebilirsiniz.',
-                                    content: [
-                                        'MetaMask\'ta "Activity" sekmesinden pending işlemi bulun.',
-                                        '"Speed Up" butonuna tıklayarak gas ücretini artırın.',
-                                        'İptal etmek için "Cancel" butonunu kullanın.',
-                                        'Manuel olarak nonce değerini sıfırlayabilirsiniz.',
-                                        'Network congestion yoğunsa işlemler doğal olarak uzun sürebilir.',
-                                        'Acil durumlar için çok yüksek gas fee ile yeni işlem gönderin.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Pending+İşlem',
-                                            caption: 'MetaMask pending işlemler ekranı'
-                                        },
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Speed+Up',
-                                            caption: 'İşlem hızlandırma seçenekleri'
-                                        }
-                                    ],
-                                    warning: {
-                                        title: '⚠️ Dikkat',
-                                        content: 'İşlem iptal edilse bile gas fee kaybedilir. Speed up işlemi ek gas fee gerektirir.'
-                                    }
-                                }
-                            },
-                            {
-                                title: 'Ağ Değiştirme Sorunu',
-                                summary: 'BSC, Polygon gibi ağları ekleyememe',
-                                detail: {
-                                    description: 'MetaMask\'a yeni blockchain ağları eklenmesi bazen manual yapılması gerekir.',
-                                    content: [
-                                        'Settings > Networks > Add Network seçeneğini kullanın.',
-                                        'Ağ bilgilerini resmi dokümantasyondan alın.',
-                                        'ChainList.org sitesinden otomatik ekleme yapabilirsiniz.',
-                                        'RPC URL\'nin çalıştığından emin olun.',
-                                        'Chain ID\'nin doğru olduğunu kontrol edin.',
-                                        'Symbol ve Explorer URL\'lerini eksiksiz doldurun.'
-                                    ],
-                                    images: [
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=Network+Ekleme',
-                                            caption: 'MetaMask network ekleme ekranı'
-                                        },
-                                        {
-                                            url: 'https://via.placeholder.com/400x250/334155/60a5fa?text=ChainList',
-                                            caption: 'ChainList.org kullanım örneği'
-                                        }
-                                    ],
-                                    tip: {
-                                        title: '💡 İpucu',
-                                        content: 'Popüler ağlar için ChainList.org kullanmak hata riskini azaltır.'
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            ]
-        };
-
-        let currentCategory = '';
-        let currentProblem = null;
-
-        function showProblems(category) {
-            currentCategory = category;
-            const categoryNames = {
-                binance: 'Binance Sorunları',
-                token: 'Token Alım Sorunları', 
-                wallet: 'Cüzdan Sorunları'
-            };
-
-            document.getElementById('mainCategories').style.display = 'none';
-            document.getElementById('problemsSection').style.display = 'block';
-            document.getElementById('problemsTitle').textContent = categoryNames[category];
+        function toggleCommand(element) {
+            const isExpanded = element.classList.contains('expanded');
             
-            const problemsList = document.getElementById('problemsList');
-            problemsList.style.display = 'grid';
-            problemsList.innerHTML = '';
-
-            problems[category].forEach(problem => {
-                const problemCard = document.createElement('div');
-                problemCard.className = 'problem-card';
-                problemCard.onclick = () => showSolution(problem);
-                problemCard.innerHTML = `
-                    <h4>${problem.title}</h4>
-                    <p>${problem.description}</p>
-                `;
-                problemsList.appendChild(problemCard);
+            document.querySelectorAll('.command-item').forEach(item => {
+                item.classList.remove('expanded');
             });
-        }
-
-        function showSolution(problem) {
-            currentProblem = problem;
-            document.getElementById('problemsSection').style.display = 'none';
-            document.getElementById('solutionSection').style.display = 'block';
-
-            const solutionContent = document.getElementById('solutionContent');
-            solutionContent.innerHTML = `
-                <h2 style="color: #f1f5f9; margin-bottom: 2rem; font-weight: 600;">${problem.solution.title}</h2>
-                <div class="solution-steps">
-                    ${problem.solution.steps.map((step, index) => `
-                        <div class="step" onclick="toggleStep(${index})">
-                            <div class="step-header">
-                                <div class="step-number">${index + 1}</div>
-                                <div class="step-title">
-                                    <h4>${step.title}</h4>
-                                    <p>${step.summary}</p>
-                                </div>
-                                <div class="expand-icon">▼</div>
-                            </div>
-                            <div class="step-detail">
-                                <h5>Detaylı Açıklama</h5>
-                                <p>${step.detail.description}</p>
-                                
-                                <h5>Yapmanız Gerekenler:</h5>
-                                ${step.detail.content.map(item => `<p>• ${item}</p>`).join('')}
-                                
-                                ${step.detail.images ? `
-                                    <h5>Görsel Yardım:</h5>
-                                    <div class="step-images">
-                                        ${step.detail.images.map(img => `
-                                            <div class="step-image">
-                                                <img src="${img.url}" alt="${img.caption}" />
-                                                <span>${img.caption}</span>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                ` : ''}
-                                
-                                ${step.detail.warning ? `
-                                    <div class="warning-box">
-                                        <h6>${step.detail.warning.title}</h6>
-                                        <p>${step.detail.warning.content}</p>
-                                    </div>
-                                ` : ''}
-                                
-                                ${step.detail.tip ? `
-                                    <div class="tip-box">
-                                        <h6>${step.detail.tip.title}</h6>
-                                        <p>${step.detail.tip.content}</p>
-                                    </div>
-                                ` : ''}
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-                <div style="background: #334155; border: 1px solid #475569; padding: 1.5rem; border-radius: 10px; margin-top: 2rem;">
-                    <h4 style="color: #60a5fa; margin-bottom: 0.5rem;">💬 Hala Sorun mu Yaşıyorsunuz?</h4>
-                    <p>Yukarıdaki adımları takip ettikten sonra hala sorun devam ediyorsa, sorununuzu detaylarıyla birlikte <strong style="color: #60a5fa;">yardim@kriptocozum.com</strong> adresine gönderin.</p>
-                </div>
-            `;
-        }
-
-        function toggleStep(stepIndex) {
-            const step = document.querySelectorAll('.step')[stepIndex];
-            step.classList.toggle('expanded');
-        }
-
-        function showCategories() {
-            document.getElementById('mainCategories').style.display = 'block';
-            document.getElementById('problemsSection').style.display = 'none';
-            document.getElementById('solutionSection').style.display = 'none';
-        }
-
-        function goBackToProblems() {
-            document.getElementById('solutionSection').style.display = 'none';
-            document.getElementById('problemsSection').style.display = 'block';
-        }
-
-        // Arama fonksiyonu
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
             
-            if (searchTerm.length < 2) {
-                showCategories();
-                return;
+            if (!isExpanded) {
+                element.classList.add('expanded');
             }
-
-            let foundProblems = [];
-            Object.keys(problems).forEach(category => {
-                problems[category].forEach(problem => {
-                    if (problem.title.toLowerCase().includes(searchTerm) || 
-                        problem.description.toLowerCase().includes(searchTerm)) {
-                        foundProblems.push({...problem, category});
-                    }
-                });
-            });
-
-            if (foundProblems.length > 0) {
-                showSearchResults(foundProblems, searchTerm);
-            } else {
-                showNoResults(searchTerm);
-            }
-        });
-
-        function showNoResults(searchTerm) {
-            document.getElementById('mainCategories').style.display = 'none';
-            document.getElementById('problemsSection').style.display = 'block';
-            document.getElementById('problemsTitle').textContent = `"${searchTerm}" için sonuç bulunamadı`;
-            
-            const problemsList = document.getElementById('problemsList');
-            problemsList.style.display = 'block';
-            problemsList.innerHTML = `
-                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #334155; border: 1px solid #475569; border-radius: 12px;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-                    <h3 style="color: #f1f5f9; margin-bottom: 1rem;">Aradığınız sonuç bulunamadı</h3>
-                    <p style="color: #94a3b8; margin-bottom: 2rem;">
-                        "${searchTerm}" ile eşleşen bir sorun bulunamadı. Farklı anahtar kelimeler deneyin veya kategorilere göz atın.
-                    </p>
-                    <button onclick="showCategories()" style="background: #60a5fa; color: #0f172a; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600;">
-                        Kategorilere Dön
-                    </button>
-                </div>
-            `;
-        }
-
-        function showSearchResults(results, searchTerm) {
-            document.getElementById('mainCategories').style.display = 'none';
-            document.getElementById('problemsSection').style.display = 'block';
-            document.getElementById('problemsTitle').textContent = `"${searchTerm}" için sonuçlar`;
-            
-            const problemsList = document.getElementById('problemsList');
-            problemsList.style.display = 'grid';
-            problemsList.innerHTML = '';
-
-            results.forEach(problem => {
-                const problemCard = document.createElement('div');
-                problemCard.className = 'problem-card';
-                problemCard.onclick = () => showSolution(problem);
-                problemCard.innerHTML = `
-                    <h4>${problem.title}</h4>
-                    <p>${problem.description}</p>
-                    <small style="color: #60a5fa; font-weight: 500;">${problem.category.charAt(0).toUpperCase() + problem.category.slice(1)} kategorisinden</small>
-                `;
-                problemsList.appendChild(problemCard);
-            });
         }
     </script>
 </body>
